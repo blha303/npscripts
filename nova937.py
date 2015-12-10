@@ -5,6 +5,10 @@ from sys import exit
 
 from .util import get_itunes_info
 
+__version__ = "1.0.0"
+__author__ = "blha303 <stevensmith.ome@gmail.com>"
+__location__ = "Perth, Western Australia"
+
 def get_data():
     data = get("http://prod-filesbucket-7hmmorphht20.s3-ap-southeast-2.amazonaws.com/nova-player-history/nova937-current.json").json()
     moreinfo = get_itunes_info(data["artist_title"], data["song_title"])

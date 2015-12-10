@@ -6,6 +6,10 @@ from bs4 import BeautifulSoup as Soup
 
 from .util import get_itunes_info
 
+__version__ = "1.0.0"
+__author__ = "blha303 <stevensmith.ome@gmail.com>"
+__location__ = "Mandurah, Western Australia"
+
 def get_data():
     info_html = urlopen("http://marci1368.getmarci.com").read()
     div = Soup(info_html, "html.parser").find('div', {'id': 'letterbox1'})
