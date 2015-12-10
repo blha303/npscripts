@@ -8,6 +8,7 @@ from .util import get_itunes_info
 
 __version__ = "1.0.0"
 __author__ = "blha303 <stevensmith.ome@gmail.com>"
+__name__ = "97.3 Coast FM"
 __location__ = "Mandurah, Western Australia"
 
 def get_data():
