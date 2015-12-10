@@ -1,16 +1,24 @@
-#!/usr/bin/env python2
-import urllib, json, sys
+#!/usr/bin/env python3
+from json import dumps
+from sys import exit
+from urllib.request import urlopen
+from bs4 import BeautifulSoup as Soup
 
+from .util import get_itunes_info
 
 def get_data():
-    artist, song = urllib.urlopen("http://www.coastlive.com.au/data.html").read().split("</strong> ")[1].strip().split(" - ")
-    moreinfo = json.loads(urllib.urlopen("https://itunes.apple.com/search?" + urllib.urlencode({'term': "{} - {}".format(artist, song), 'entity': 'song'})).read())["results"][0]
-    return {"artist_title": artist, "song_title": song, "album_title": moreinfo["collectionName"], "itunes_url": moreinfo["trackViewUrl"]}
+    info_html = urlopen("http://marci1368.getmarci.com").read()
+    div = Soup(info_html, "html.parser").find('div', {'id': 'letterbox1'})
+    artist = div["data-artist"]
+    song = div["data-title"]
+    album = div["data-album"]
+    moreinfo = get_itunes_info(artist, song)
+    return {"artist_title": artist, "song_title": song, "album_title": album if album else moreinfo["collectionName"], "itunes_url": moreinfo["trackViewUrl"]}
     
 
 def main():
-    print json.dumps(get_data())
+    print(dumps(get_data()))
     return 0
 
 if __name__ == "__main__":
-    sys.exit(main())
+    exit(main())
