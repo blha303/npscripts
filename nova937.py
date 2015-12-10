@@ -12,12 +12,12 @@ __location__ = "Perth, Western Australia"
 def get_data():
     data = get("http://prod-filesbucket-7hmmorphht20.s3-ap-southeast-2.amazonaws.com/nova-player-history/nova937-current.json").json()
     moreinfo = get_itunes_info(data["artist_title"], data["song_title"])
-    if moreinfo:
-        if not data["itunes_url"]:
-            data["itunes_url"] = moreinfo["trackViewUrl"]
-        if not data["album_title"]:
-            data["album_title"] = moreinfo["collectionName"]
-    return data
+    if not moreinfo:
+        return {"artistName": data["artist_title"],
+                "trackName": data["song_title"],
+                "collectionName": data["album_title"],
+                "trackViewUrl": data["itunes_url"]}
+    return moreinfo
 
 
 def main():

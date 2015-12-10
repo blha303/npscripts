@@ -13,10 +13,11 @@ __location__ = "Bentley, Western Australia"
 def get_data():
     data = get("http://curtinfm.fastcast4u.com/info.php?get=player&rand=" + str(random())).json()
     moreinfo = get_itunes_info(data["artist"], data["title"])
-    if moreinfo:
-        data["itunes_url"] = moreinfo["trackViewUrl"]
-        data["album_title"] = data["albumname"] if data["albumname"] else moreinfo["collectionName"]
-    return data
+    if not moreinfo:
+        return {"artistName": data["artist"],
+                "trackName": data["title"],
+                "collectionName": data["albumname"]}
+    return moreinfo
 
 
 def main():

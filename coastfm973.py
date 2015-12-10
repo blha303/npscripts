@@ -13,13 +13,12 @@ __location__ = "Mandurah, Western Australia"
 def get_data():
     info_html = urlopen("http://marci1368.getmarci.com").read()
     div = Soup(info_html, "html.parser").find('div', {'id': 'letterbox1'})
-    artist = div["data-artist"]
-    song = div["data-title"]
-    album = div["data-album"]
-    moreinfo = get_itunes_info(artist, song)
-    return {"artist_title": artist, "song_title": song,
-            "album_title": album if album else moreinfo["collectionName"] if "collectionName" in moreinfo else "",
-            "itunes_url": moreinfo["trackViewUrl"] if "trackViewUrl" in moreinfo else ""}
+    moreinfo = get_itunes_info(div["data-artist"], div["data-title"])
+    if not moreinfo:
+        return {"artistName": div["data-artist"],
+                "trackName": div["data-title"],
+                "collectionName": div["data-album"]}
+    return moreinfo
 
 def main():
     print(dumps(get_data()))
