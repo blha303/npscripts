@@ -17,8 +17,9 @@ def get_data():
     song = div["data-title"]
     album = div["data-album"]
     moreinfo = get_itunes_info(artist, song)
-    return {"artist_title": artist, "song_title": song, "album_title": album if album else moreinfo["collectionName"], "itunes_url": moreinfo["trackViewUrl"]}
-    
+    return {"artist_title": artist, "song_title": song,
+            "album_title": album if album else moreinfo["collectionName"] if "collectionName" in moreinfo else "",
+            "itunes_url": moreinfo["trackViewUrl"] if "trackViewUrl" in moreinfo else ""}
 
 def main():
     print(dumps(get_data()))
