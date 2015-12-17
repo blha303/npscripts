@@ -10,6 +10,7 @@ __version__ = "1.0.0"
 __author__ = "blha303 <stevensmith.ome@gmail.com>"
 __name__ = "97.3 Coast FM"
 __location__ = "Mandurah, Western Australia"
+__player__ = "http://203.121.207.78:8000/"
 
 def get_data():
     info_html = urlopen("http://marci1368.getmarci.com").read()

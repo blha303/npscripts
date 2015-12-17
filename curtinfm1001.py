@@ -10,6 +10,7 @@ __version__ = "1.0.0"
 __author__ = "blha303 <stevensmith.ome@gmail.com>"
 __name__ = "Curtin FM 100.1"
 __location__ = "Bentley, Western Australia"
+__player__ = "http://192.99.17.12:6192/stream"
 
 def get_data():
     data = get("http://curtinfm.fastcast4u.com/info.php?get=player&rand=" + str(random())).json()

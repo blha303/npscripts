@@ -9,6 +9,7 @@ __version__ = "1.0.0"
 __author__ = "blha303 <stevensmith.ome@gmail.com>"
 __name__ = "Nova 937"
 __location__ = "Perth, Western Australia"
+__player__ = "http://streaming.novaentertainment.com.au/nova937"
 
 def get_data():
     data = get("http://prod-filesbucket-7hmmorphht20.s3-ap-southeast-2.amazonaws.com/nova-player-history/nova937-current.json").json()
