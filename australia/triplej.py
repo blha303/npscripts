@@ -3,7 +3,7 @@ from requests import get
 from json import dumps
 from sys import exit
 
-from .util import get_itunes_info
+from ..util import get_itunes_info
 
 __version__ = "1.0.0"
 __author__ = "blha303 <stevensmith.ome@gmail.com>"
