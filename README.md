@@ -1,7 +1,14 @@
 npscripts
 =========
 
-Basically the idea here is, add this as a submodule if you want to get what's now playing on a radio station, add your own script (and please PR it back to this repo <3), and call it via:
+A collection of scripts for getting radio now-playing information. Information is returned from an iTunes search for the song, or in that format if a result is not found.
 
-    from npscripts import coastfm973
-    data = coastfm973.get_data()
+New submissions welcomed!
+
+    import npscripts.australia.triplej as triplej
+    print("Now playing on {}: {} (Listen: {} )".format(
+            triplej.__name__,
+            "{artistName} - {trackName} (from {collectionName})".format(**triplej.get_data()),
+            triplej.__player__
+            )
+         )
